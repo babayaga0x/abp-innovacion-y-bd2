@@ -1,0 +1,56 @@
+ABP - Innovación en Gestión de Datos - Grupo META 7
+Sferco, Emiliano · Sukhovetskii, Artem · Tocci, Ivanna
+
+CONTENIDO
+  Informe Final ABP - Grupo Meta7.docx / .pdf   Informe final (modelo institucional ABP)
+  codigo/                                         Código fuente en Python
+  resultados/                                     Salidas del procesamiento (gráficos, tablas,
+                                                  trazabilidad y reporte de consola)
+  base_de_datos/                                  Script SQL de la base y DER
+
+REQUISITOS
+  - MySQL 8 con la base cargada desde base_de_datos/ (script SQL).
+  - local_infile habilitado en el servidor (solo para el alta desde CSV).
+  - Python 3.11 o superior.
+
+INSTALACIÓN DE LA BASE DE DATOS
+  1. Abrir MySQL Workbench y conectarse a MySQL Server 8.
+  2. Seleccionar File → Open SQL Script.
+  3. Abrir base_de_datos/Script_BD_estimaciones_agricolas_Grupo_Meta7.sql.
+  4. Ejecutar el script completo con el botón del rayo.
+  5. Actualizar SCHEMAS y verificar que se creó estimaciones_agricolas.
+
+  El script crea las tablas, carga los datos y genera las vistas.
+  Utilizar las credenciales propias de MySQL. No se incluyen
+  contraseñas reales.
+
+  IMPORTANTE: Si ya existe la base estimaciones_agricolas,
+  realizar una copia de seguridad antes de ejecutar el script,
+  porque elimina y vuelve a crear tablas.
+
+INSTALACIÓN DE PYTHON (Windows, desde la carpeta codigo)
+  python -m venv .venv
+  .venv\Scripts\activate
+  pip install -r requirements.txt
+
+  Contraseña de MySQL: se pide por consola al iniciar, o puede definirse en un
+  archivo .env junto a config.py con la línea  MYSQL_PASSWORD=...
+  (opcionales: MYSQL_HOST, MYSQL_USER, MYSQL_DATABASE)
+
+EJECUCIÓN
+  Aplicación de gestión (menú por consola):
+      python main.py
+
+  Procesamiento de datos con pandas y NumPy (3ra entrega):
+      python -m procesamiento
+  Genera las salidas en codigo/salidas/entrega3/ (las mismas incluidas en resultados/).
+
+ESTRUCTURA DEL CÓDIGO
+  main.py          punto de entrada de la aplicación
+  config.py        configuración
+  db/              conexión y esquema (tablas de análisis, baja lógica, VIEW)
+  modelos/         clases POO del modelo relacional
+  servicios/       cálculo de situaciones desfavorables y alta incremental desde CSV
+  ui/              menús por consola
+  procesamiento/   carga en pandas, calidad de datos, filtros, groupby, describe(),
+                   NumPy, respuesta a las 5 preguntas, trazabilidad y gráficos
